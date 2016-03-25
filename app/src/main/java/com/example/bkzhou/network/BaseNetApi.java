@@ -170,9 +170,9 @@ public abstract class BaseNetApi {
   /**
    * string 请求
    * @param context 相关上下文
-   * @param url　网络访问url
+   * @param url 网络访问url
    * @param params 网络请求参数
-   * @param callback　网络请求回调
+   * @param callback 网络请求回调
    */
   public void stringRequest(Context context, String url, Map<String, String> params, OnNetCallback<String> callback){
     makeRequest(context, StringRequsetImpl.class, url, params, callback);
@@ -181,9 +181,9 @@ public abstract class BaseNetApi {
   /**
    * jsonObject 请求
    * @param context 相关上下文
-   * @param url　网络访问url
+   * @param url 网络访问url
    * @param params 网络请求参数
-   * @param callback　网络请求回调
+   * @param callback 网络请求回调
    */
   public void jsonObjectRequest(Context context, String url, Map<String, String> params, OnNetCallback<JSONObject> callback){
     makeRequest(context, JsonObjectRequestImpl.class, url, params, callback);
@@ -192,9 +192,9 @@ public abstract class BaseNetApi {
   /**
    * jsonArray 请求
    * @param context 相关上下文
-   * @param url　网络访问url
+   * @param url 网络访问url
    * @param params 网络请求参数
-   * @param callback　网络请求回调
+   * @param callback 网络请求回调
    */
   public void jsonArrayRequest(Context context, String url, Map<String, String> params, OnNetCallback<JSONArray> callback){
     makeRequest(context, JsonArrayRequestImpl.class, url, params, callback);
