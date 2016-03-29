@@ -47,7 +47,7 @@ public abstract class BaseNetApi {
   public interface OnNetCallback<T> {
     void onSuccess(T result);
 
-    void onError(NetworkError error);
+    void onError(NetError error);
   }
 
   private boolean checkIfExtendsRequest(Class clazz) {
@@ -72,8 +72,9 @@ public abstract class BaseNetApi {
             Log.i("BaseNetApi", "activity finish, not callback");
             return;
           }
-          NetworkError networkError = new NetworkError();
-//          networkError.transferVolleyError(volleyError);
+          Log.d("BaseNetApi",volleyError.toString());
+          NetError networkError = new NetError();
+          networkError.transferVolleyError(volleyError);
           callback.onError(networkError);
 
         }

@@ -10,6 +10,11 @@ public class NetError extends Exception {
   public int errorCode;
   public String errorMessage;
 
+  @Override
+  public String getMessage() {
+    return errorMessage;
+  }
+
   /**
    * 将volley的错误信息转换成通用的信息
    */
