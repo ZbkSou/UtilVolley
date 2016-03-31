@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.volley.NetworkError;
 import com.example.bkzhou.netapi.NetApi;
@@ -21,6 +22,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
   private Button stringVolleyBut;
   private Button jsonObjectVolleyBut;
   private Button jsonArrayVolleyBut;
+  private TextView Testtext;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -34,6 +36,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
     jsonObjectVolleyBut.setOnClickListener(this);
     jsonArrayVolleyBut = (Button) this.findViewById(R.id.jsonobject_volley_test);
     jsonArrayVolleyBut .setOnClickListener(this);
+
+    Testtext = (TextView) this.findViewById(R.id.test_text);
+
   }
 
 
@@ -48,6 +53,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
              @Override
              public void onSuccess(String result) {
                Log.d("MainActivity",result);
+               Testtext.setText(result);
              }
 
              @Override

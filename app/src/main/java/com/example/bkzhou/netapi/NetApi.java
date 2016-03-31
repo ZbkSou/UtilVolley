@@ -1,6 +1,5 @@
 package com.example.bkzhou.netapi;
 
-import android.widget.BaseAdapter;
 
 import com.example.bkzhou.network.BaseNetApi;
 
