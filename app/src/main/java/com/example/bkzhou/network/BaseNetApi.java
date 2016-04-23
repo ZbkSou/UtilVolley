@@ -16,8 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.ImageRequest;
-
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -60,7 +58,7 @@ public abstract class BaseNetApi {
     return false;
   }
 
-  protected <T> void makeRequest(final Context context, Class<?> clazz, String url, final Map<String, String> params, final OnNetCallback<T> callback) {
+  protected <T> void makeRequest(int Method,final Context context, Class<?> clazz, String url, final Map<String, String> params, final OnNetCallback<T> callback) {
     Request request = null;
     Response.ErrorListener errorListener = null;
     Response.Listener listener = null;
@@ -74,6 +72,7 @@ public abstract class BaseNetApi {
           }
           Log.d("BaseNetApi",volleyError.toString());
           NetError networkError = new NetError();
+//          将volleyError转换成E
           networkError.transferVolleyError(volleyError);
           callback.onError(networkError);
 
@@ -97,10 +96,12 @@ public abstract class BaseNetApi {
     } else if (checkIfExtendsRequest(clazz)) {
       try {
         Constructor constructor = clazz.getConstructor(int.class, String.class, Response.Listener.class, Response.ErrorListener.class, Map.class);
-        int method = Request.Method.GET;
-        if (params != null) {
-          method = Request.Method.POST;
-        }
+//        todo 需要修改成传入方法来决定method，加入对params转换成url
+//        int method = Request.Method.GET;
+//        if (params != null) {
+//          method = Request.Method.POST;
+//        }
+        int method = Method;
         request = (Request) constructor.newInstance(method, url, listener, errorListener, params);
 
       } catch (Exception e) {
@@ -175,8 +176,8 @@ public abstract class BaseNetApi {
    * @param params 网络请求参数
    * @param callback 网络请求回调
    */
-  public void stringRequest(Context context, String url, Map<String, String> params, OnNetCallback<String> callback){
-    makeRequest(context, StringRequsetImpl.class, url, params, callback);
+  public void stringRequest(int Method,Context context, String url, Map<String, String> params, OnNetCallback<String> callback){
+    makeRequest(Method,context, StringRequsetImpl.class, url, params, callback);
   }
 
   /**
@@ -186,8 +187,8 @@ public abstract class BaseNetApi {
    * @param params 网络请求参数
    * @param callback 网络请求回调
    */
-  public void jsonObjectRequest(Context context, String url, Map<String, String> params, OnNetCallback<JSONObject> callback){
-    makeRequest(context, JsonObjectRequestImpl.class, url, params, callback);
+  public void jsonObjectRequest(int Method,Context context, String url, Map<String, String> params, OnNetCallback<JSONObject> callback){
+    makeRequest(Method,context, JsonObjectRequestImpl.class, url, params, callback);
   }
 
   /**
@@ -197,8 +198,8 @@ public abstract class BaseNetApi {
    * @param params 网络请求参数
    * @param callback 网络请求回调
    */
-  public void jsonArrayRequest(Context context, String url, Map<String, String> params, OnNetCallback<JSONArray> callback){
-    makeRequest(context, JsonArrayRequestImpl.class, url, params, callback);
+  public void jsonArrayRequest(int Method,Context context, String url, Map<String, String> params, OnNetCallback<JSONArray> callback){
+    makeRequest(Method,context, JsonArrayRequestImpl.class, url, params, callback);
   }
 
 }
