@@ -34,6 +34,9 @@ public class ImageLoader {
     }
     return instance;
   }
+  public com.android.volley.toolbox.ImageLoader getmImageLoader(){
+    return mImageLoader;
+  }
 
   /**
    * 获取imageview的大小

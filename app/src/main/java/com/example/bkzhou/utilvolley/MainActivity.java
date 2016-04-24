@@ -7,9 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.NetworkError;
+import com.android.volley.toolbox.NetworkImageView;
+import com.example.bkzhou.base.BaseApplication;
 import com.example.bkzhou.data.IModelResponse;
 import com.example.bkzhou.data.WeatherInfoModel;
 import com.example.bkzhou.model.WeatherInfo;
@@ -29,6 +32,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
   private Button stringVolleyBut;
   private Button jsonObjectVolleyBut;
   private Button jsonArrayVolleyBut;
+  private Button imageVolleyBut;
+  private NetworkImageView networkImageView;
   private TextView Testtext;
   private static  final  String TAG = "MainActivity";
   @Override
@@ -44,6 +49,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
     jsonObjectVolleyBut.setOnClickListener(this);
     jsonArrayVolleyBut = (Button) this.findViewById(R.id.jsonobject_volley_test);
     jsonArrayVolleyBut .setOnClickListener(this);
+    imageVolleyBut = (Button) this.findViewById(R.id.image_volley_test);
+    imageVolleyBut.setOnClickListener(this);
+    networkImageView = (NetworkImageView) findViewById(R.id.image);
 
     Testtext = (TextView) this.findViewById(R.id.test_text);
 
@@ -83,6 +91,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
             Log.d(TAG,msg);
           }
         });
+        break;
+      case R.id.image_volley_test:
+//        提供NetworkImageView获取图片的例子
+
+        networkImageView.setImageUrl("https://sf-sponsor.b0.upaiyun.com/f4c70bef327dad72131cfa6f23b54a56.jpg", BaseApplication.getVolleyImageLoader().getmImageLoader());
+//        向普通imageview提供图片
+//        BaseApplication.getVolleyImageLoader().loadImage("https://sf-sponsor.b0.upaiyun.com/f4c70bef327dad72131cfa6f23b54a56.jpg", ImageView);
+
         break;
     }
   }

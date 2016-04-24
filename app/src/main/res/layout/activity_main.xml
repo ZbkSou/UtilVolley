@@ -34,6 +34,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/jsonoarray_volley_test"
             android:text="jsonArrayRequest"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_volley_test"
+            android:text="图片"/>
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="80dp"
+            android:background="#888888"
+            android:scaleType="centerCrop"
+            android:id="@+id/image" />
 
     </LinearLayout>
 </ScrollView>
