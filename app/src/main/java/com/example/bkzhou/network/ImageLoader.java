@@ -21,8 +21,8 @@ public class ImageLoader {
 
   private ImageLoader(final Context context) {
     RequestQueue requestQueue = Volley.newRequestQueue(context);
-    VolleyLruCache lruCache = new VolleyLruCache();
-    mImageLoader = new com.android.volley.toolbox.ImageLoader(requestQueue, lruCache);
+//    VolleyLruCache lruCache = new VolleyLruCache();
+    mImageLoader = new com.android.volley.toolbox.ImageLoader(requestQueue, VolleyLruCache.getInstance(context));
   }
 
   public static ImageLoader getInstance(Context context) {
