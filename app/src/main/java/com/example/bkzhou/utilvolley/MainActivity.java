@@ -10,11 +10,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.volley.NetworkError;
+import com.example.bkzhou.data.IModelResponse;
+import com.example.bkzhou.data.WeatherInfoModel;
+import com.example.bkzhou.model.WeatherInfo;
 import com.example.bkzhou.netapi.NetApi;
 import com.example.bkzhou.network.BaseNetApi;
 import com.example.bkzhou.network.NetError;
 import com.example.bkzhou.utils.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -23,6 +30,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
   private Button jsonObjectVolleyBut;
   private Button jsonArrayVolleyBut;
   private TextView Testtext;
+  private static  final  String TAG = "MainActivity";
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -47,24 +55,34 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     switch (view.getId()){
        case R.id.string_volley_test:
-         NetApi.getInstance().stringRequest(this, "https://www.baidu.com", new HashMap<String, String>(),
-           new BaseNetApi.OnNetCallback<String>() {
+         NetApi.getInstance().get(this, "http://www.weather.com.cn/data/sk/101010100.html", new HashMap<String, String>(), new NetApi.JsonResponse() {
+           @Override
+           public void onSuccess(JSONObject response, JSONArray responseArray) {
+             Log.d(TAG,response.toString());
 
-             @Override
-             public void onSuccess(String result) {
-               Log.d("MainActivity",result);
-               Testtext.setText(result);
-             }
+           }
 
-             @Override
-             public void onError(NetError error) {
-               Log.d("MainActivity",error.getMessage());
-             }
-           });
+           @Override
+           public void onError(NetError error) {
+
+           }
+         });
+
         break;
       case R.id.jsonoarray_volley_test:
         break;
       case R.id.jsonobject_volley_test:
+        WeatherInfoModel weatherInfoModel= new WeatherInfoModel(this);
+        weatherInfoModel.getWeather(new IModelResponse<WeatherInfo>() {
+          @Override
+          public void onSuccess(WeatherInfo model, ArrayList<WeatherInfo> list) {
+            Log.d(TAG,"城市"+model.getCity()+"雨"+model.getRain());
+          }
+          @Override
+          public void onError(String msg) {
+            Log.d(TAG,msg);
+          }
+        });
         break;
     }
   }

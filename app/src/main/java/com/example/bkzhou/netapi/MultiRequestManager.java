@@ -1,4 +1,4 @@
-package com.example.bkzhou.network;
+package com.example.bkzhou.netapi;
 
 import java.util.ArrayList;
 

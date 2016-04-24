@@ -96,11 +96,7 @@ public abstract class BaseNetApi {
     } else if (checkIfExtendsRequest(clazz)) {
       try {
         Constructor constructor = clazz.getConstructor(int.class, String.class, Response.Listener.class, Response.ErrorListener.class, Map.class);
-//        todo 需要修改成传入方法来决定method，加入对params转换成url
-//        int method = Request.Method.GET;
-//        if (params != null) {
-//          method = Request.Method.POST;
-//        }
+
         int method = Method;
         request = (Request) constructor.newInstance(method, url, listener, errorListener, params);
 

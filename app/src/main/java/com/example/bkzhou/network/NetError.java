@@ -14,7 +14,14 @@ public class NetError extends Exception {
   public String getMessage() {
     return errorMessage;
   }
+  public NetError() {
+    super();
+  }
 
+  public NetError(String str) {
+    errorCode = 0;
+    errorMessage = str;
+  }
   /**
    * 将volley的错误信息转换成通用的信息
    */

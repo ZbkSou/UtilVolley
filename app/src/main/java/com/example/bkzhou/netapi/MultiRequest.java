@@ -1,4 +1,6 @@
-package com.example.bkzhou.network;
+package com.example.bkzhou.netapi;
+
+import com.example.bkzhou.netapi.MultiRequestManager;
 
 /**
  * Created by bkzhou on 16-4-1.

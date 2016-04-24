@@ -26,29 +26,19 @@ public class Model {
   }
 
 
-  /**
-   * Json 返回值
-   *
-   *
-   */
-  public interface JsonResponse {
-    public void onSuccess(JSONObject response, JSONArray responseArray);
 
-    public void onError(VolleyError error);
-  }
+  public void get(Context context,String url,Map<String,String> params,  NetApi.JsonResponse jsonResponse){
 
-  public void get(Context context,String url,Map<String,String> params,  BaseNetApi.OnNetCallback callback){
-
-    netApi.stringRequest(Request.Method.GET, context, url, params, callback);
+    netApi.get(context, url, params, jsonResponse);
   }
-  public void post(Context context,String url, Map<String, String> params, BaseNetApi.OnNetCallback callback) {
-    netApi.stringRequest(Request.Method.POST, context, url, params, callback);
+  public void post(Context context,String url, Map<String, String> params, NetApi.JsonResponse jsonResponse) {
+    netApi.post(context, url, params, jsonResponse);
   }
-  public void put(Context context,String url, Map<String, String> params, BaseNetApi.OnNetCallback callback) {
-    netApi.stringRequest(Request.Method.PUT, context, url, params, callback);
+  public void put(Context context,String url, Map<String, String> params, NetApi.JsonResponse jsonResponse) {
+    netApi.put( context, url, params, jsonResponse);
   }
-  public void delete(Context context,String url, Map<String, String> params, BaseNetApi.OnNetCallback callback) {
-    netApi.stringRequest(Request.Method.DELETE, context, url, params, callback);
+  public void delete(Context context,String url, Map<String, String> params, NetApi.JsonResponse jsonResponse) {
+    netApi.delete( context, url, params, jsonResponse);
   }
 
 }
