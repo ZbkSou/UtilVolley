@@ -2,6 +2,14 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+/.idea
 .DS_Store
 /build
 /captures
+/Ihaveu2.0.iml
+/app/build
+/app/app.iml
+/IhaveuAndroid.iml
+/app/newihaveu_keystore.jks
+/gradle.properties
+/signing.properties

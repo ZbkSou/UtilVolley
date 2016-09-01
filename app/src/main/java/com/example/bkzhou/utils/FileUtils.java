@@ -113,6 +113,21 @@ public class FileUtils {
     }
   }
   /**
+   * 获取外部文件目录，过大会自动删除
+   */
+  public static String getExternalStorageFilePath(){
+    ExternalStorageType type = ExternalStorageType.FILE;
+    return checkAndCreateChildDirectory(type.getFilePath(getExternalStoragePath()));
+  }
+
+  /**
+   * 在外部{@link #getExternalStorageFilePath()}目录下创建文件，
+   */
+  public static File createFileInFileDirectory(String filename){
+    return checkAndCreateFile(getExternalStorageTempPath() + filename);
+  }
+
+  /**
    * 获取外部图片文件目录，在该目录下会创建.nomedia文件防止系统扫描
    */
   public static String getExternalStorageImagePath(){
